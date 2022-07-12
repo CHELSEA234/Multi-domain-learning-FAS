@@ -4,13 +4,14 @@ This is the official code for our ECCV2022 oral paper "Multi-domain Learning for
 [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](https://www.cse.msu.edu/~liuxm/index2.html)
 
 ## Prerequisites
-- Tensorflow 2.3.0
+- Python 3.6 - 3.8
+- Tensorflow 2.3.0 - 2.7.0
 - Numpy 1.18.5
 - opencv-python 4.5.2.54
 
 ## Dataset
 The FASMD Dataset is constructed on  SiW-Mv2, SiW, and Oulu-NPU. It consists of five sub-datasets: dataset A is the
-source domain dataset, and B, C, D and E are four target domain datasets. The details can be found in 
+source domain dataset, and B, C, D and E are four target domain datasets. The details can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/dataset)
 
 ## Pre-trained model
 
@@ -19,3 +20,14 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
 ## Inference
 
 ## Reference
+If you would like to use our work, please cite:
+```
+@inproceedings{xiaoguo2023MDFAS
+      title={Multi-domain Learning for Updating Face Anti-spoofing Models}, 
+      author={Xiao, Guo and Yaojie, Liu, Anil, Jain and Liu, Xiaoming},
+      booktitle={In Proceeding of European Conference on Computer Vision (ECCV 2022)},
+      year={2022}
+      
+}
+```
+If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
