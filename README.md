@@ -3,7 +3,9 @@ This is the official code for our ECCV2022 oral paper "Multi-domain Learning for
 
 [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](https://www.cse.msu.edu/~liuxm/index2.html)
 
-![alt text](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/overall_architecture.jpg)
+<p align="center">
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/overall_architecture.jpg" alt="drawing" width="800"/>
+</p>
 
 ## Prerequisites
 - Python 3.6 - 3.8
@@ -14,6 +16,11 @@ This is the official code for our ECCV2022 oral paper "Multi-domain Learning for
 ## Dataset
 The FASMD Dataset is constructed on  SiW-Mv2, SiW, and Oulu-NPU. It consists of five sub-datasets: dataset A is the
 source domain dataset, and B, C, D and E are four target domain datasets. The details can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/dataset)
+
+<p align="center">
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/Dataset_demo.png" alt="drawing" width="800"/>
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/distribution.png" alt="drawing" width="800"/>
+</p>
 
 ## Train and Inference
 - After setting up the dataset path, you can run the training code as shown below:
