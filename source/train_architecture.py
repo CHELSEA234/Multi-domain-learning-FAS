@@ -257,11 +257,6 @@ def main(args):
 	config_siw  = Config_siw(args)
 	config_oulu = Config_oulu(args)
 
-	####################################################
-	## cannot use streamlined one for now.
-	## get the pretrained model performance.
-	## then show the ft performance here.
-	####################################################
 	config.lr   = args.lr
 	config.type = args.type
 	config.pretrain_folder = args.pretrain_folder
