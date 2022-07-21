@@ -1,5 +1,4 @@
 from skimage.draw import line_aa
-## place this before from skimage.draw import line_aa, will generate error...
 import cv2
 import tensorflow as tf
 import sys
@@ -249,11 +248,6 @@ def face_crop_and_resize(img, lm, fsize, box_perturb=[1.15, 1.25], aug=False):
            int(center[1])-int(length*1.2),
            int(center[0])+int(length),
            int(center[1])+int(length)+int(length)-int(length*1.2)]
-    # box0 = [int(center[0])-int(length),
-    #        int(center[1])-int(length*1.2),
-    #        int(center[0])+int(length),
-    #        int(center[1])+int(length)+int(length)-int(length*1.2)]
-    #print(box, img.shape)
     box_m = [img_shape[1] - box[2],
              box[1],
              img_shape[1] - box[0],
@@ -282,8 +276,9 @@ def face_crop_and_resize(img, lm, fsize, box_perturb=[1.15, 1.25], aug=False):
         img = cv2.resize(img,   (fsize,fsize))
     else:
         img = np.zeros((fsize, fsize, img.shape[2])) 
-    # print("...coming here...")
-    # print(img.shape, type(img), np.max(img), np.min(img))
-    # print("...coming here...")
-    # import sys;sys.exit(0)
     return img, lm/(length*2)
+
+def file_reader(filename):
+    with open(filename, 'r') as f:
+      filenames_list = f.read().split('\n')
+    return filenames_list
