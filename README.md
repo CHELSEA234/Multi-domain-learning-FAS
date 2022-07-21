@@ -31,7 +31,6 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
 - To run the testing code, which will save scores in csv file.
 ```
     python test_architecture.py
-    python csv_parser.py
 ```
 
 ## Pre-trained model
