@@ -256,7 +256,6 @@ def main(args):
 	config = Config(args)
 	config_siw  = Config_siw(args)
 	config_oulu = Config_oulu(args)
-
 	config.lr   = args.lr
 	config.type = args.type
 	config.pretrain_folder = args.pretrain_folder
