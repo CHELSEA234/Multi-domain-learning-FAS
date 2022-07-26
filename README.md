@@ -1,5 +1,7 @@
 # Multi-domain Learning for Updating Face Anti-spoofing Models
-This is the official code for our ECCV2022 oral paper "Multi-domain Learning for Updating Face Anti-spoofing Models".
+This is the official code for our ECCV2022 oral paper "Multi-domain Learning for Updating Face Anti-spoofing Models" 
+
+[[PDF]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022.pdf) [[Supp]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022.pdf) 
 
 [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](https://www.cse.msu.edu/~liuxm/index2.html)
 
@@ -47,4 +49,4 @@ If you would like to use our work, please cite:
       
 }
 ```
-If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
+This github will continue to update in the near future. If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
