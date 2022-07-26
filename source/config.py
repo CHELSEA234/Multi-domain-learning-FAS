@@ -41,8 +41,6 @@ class Config(object):
 	MOVING_AVERAGE_DECAY = 0.9999		# The decay to use for the moving average.       
 	GAN = 'ls' # 'hinge', 'ls'
 	DECAY_STEP = 1
-
-	# Discriminator depth.
 	n_layer_D = 4
 
 	def __init__(self, args):
@@ -53,7 +51,6 @@ class Config(object):
 		self.type  = args.type
 		self.SET = args.set
 		self.illu_dict = dict()
-		self.illu_dict_siwm = dict()
 		gpus = tf.config.experimental.list_physical_devices('GPU')
 		if gpus:
 			try:
@@ -89,20 +86,15 @@ class Config(object):
 		sess_3_subs = ['5','10','15','20','25','30','35','40','50','60'] # session#3 subject.
 		for _ in old_list:
 			device_id, sess_id, sub_id, sp_id = _.split('/')[-1].split('_')
-			if sess_id in target_list:
+			if (sess_id in target_list) or (sub_id not in target_list and sub_id in sess_3_subs):
 				new_list.append(_)
-			else:
-				if sub_id in sess_3_subs:	
-					new_list.append(_)
 		return new_list
 
 	def _list_gen(self, li_list, sp_list, dataset_name, state):
 		if dataset_name == 'Oulu':
-			return self._filter_ill_oulu(li_list, state),
-				   self._filter_ill_oulu(sp_list, state)
+			return self._filter_ill_oulu(li_list, state), self._filter_ill_oulu(sp_list, state)
 		elif dataset_name == 'SiW':
-			return self._filter_ill_siw(li_list, state),
-				   self._filter_ill_siw(sp_list, state)
+			return self._filter_ill_siw(li_list, state), self._filter_ill_siw(sp_list, state)
 		else:
 			return 
 
@@ -114,25 +106,14 @@ class Config(object):
 		csv_reader = csv.reader(csv_file, delimiter=',')
 		line_count  = 0
 		for row in csv_reader:
-			if line_count == 0:
-				pass
-			else:
-				if "siwm" not in row[0]:
+			if line_count != 0 and "siwm" not in row[0]:
 					sub_id, label = row[0].split('/')[-2], row[1]
 					self.illu_dict[sub_id] = label
-				else:
-					sub_id, label = row[0].split('/')[-2], row[1]
-					self.illu_dict_siwm[sub_id] = label
 			line_count += 1
 		csv_file.close()
 
-	def compile(self, dataset_name='SiWM-v2'):
-		assert dataset_name in ['SiWM-v2', 'SiW', 'Oulu'], print("Please offer the correct dataset.")
-		## TODO: how to output in the log txt file.
-		print(f"=====================================")
-		print(f"Compiling the {dataset_name} dataset.")
-		print(f"=====================================")
-
+	def compile(self, dataset_name='SiW'):
+		assert dataset_name in ['SiW', 'Oulu'], print("Please offer the correct dataset.")
 		# Training data.
 		#########################################################
 		## In Oulu subject # in A is 21, B, C and D are around 6.
@@ -156,23 +137,20 @@ class Config(object):
 		elif self.phase=='ft':
 			## the new version ft in ill, it combines BCD, with small amount of 1,2, most 3.
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames)
-			if dataset_name != 'SiWM-v2' and self.type == 'illu':
+			if self.type == 'illu':
 				self.LI_DATA_DIR, self.SP_DATA_DIR = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
 																	state='ft')
 		elif self.phase=='ub':
-			new_li = []
-			new_sp = []
+			new_li, new_sp = [], []
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames0)
-			if dataset_name != 'SiWM-v2':
-				new_li_pre, new_sp_pre = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
-														state='pretrain')
+			new_li_pre, new_sp_pre = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
+													state='pretrain')
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames1)
-			if dataset_name != 'SiWM-v2' and self.type=='illu':
+			if self.type=='illu':
 				new_li_ft, new_sp_ft = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
 													  state='ft')
 			else:
-				new_li_ft = self.LI_DATA_DIR
-				new_sp_ft = self.SP_DATA_DIR
+				new_li_ft, new_sp_ft = self.LI_DATA_DIR, self, SP_DATA_DIR
 			self.LI_DATA_DIR = new_li_pre + new_li_ft
 			self.SP_DATA_DIR = new_sp_pre + new_sp_ft
 		else:
@@ -228,7 +206,7 @@ class Config_oulu(Config):
 	def search_folder_wrapper(self, root_dir, filenames):
 		li_list, sp_list = [], []
 		for x in filenames:
-			if x not in ["0", ""]
+			if x not in ["0", ""]:
 				sub_id = '0'+x if len(x) == 1 else x
 				li_list += self.search_folder(root_dir=root_dir, sub_id=sub_id, stype="Live")
 				sp_list += self.search_folder(root_dir=root_dir, sub_id=sub_id, stype="Spoof")
@@ -274,7 +252,7 @@ class Config_siw(Config):
 	def search_folder_wrapper(self, root_dir, filenames):
 		li_list, sp_list = [], []
 		for x in filenames:
-			if x not in ["0", ""]
+			if x not in ["0", ""]:
 				digit_len = len(x)
 				if digit_len == 1:
 					sub_id = '00'+x
@@ -311,7 +289,8 @@ class Config_siwm(Config):
 		else:
 			assert False, print("wait to implement...")
 
-	def compile_siwm(self):
+	# overriding the compile method.
+	def compile(self, dataset_name='SiWM-v2'):
 		# Train data.
 		## GX: compile_siwm does not have filter_out process for the new illumination.
 		self.SP_DATA_DIR, self.LI_DATA_DIR = [], []

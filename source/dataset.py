@@ -21,7 +21,7 @@ import numpy as np
 from natsort import natsorted, ns
 from utils import face_crop_and_resize 
 from warp import generate_uv_map
-from parameters import uv, lm_ref, RANDOM_SEED, 
+from parameters import uv, lm_ref, RANDOM_SEED, REPEAT_TIME_LI, REPEAT_TIME_SP, SAMPLE_NUM_TRAIN, SAMPLE_NUM_TEST
 
 autotune = tf.data.experimental.AUTOTUNE
 autotune = -1
@@ -185,8 +185,7 @@ class Dataset():
             stype = parts[-1].split('_')[:-1]
             stype = '_'.join(stype)
         elif dataset == 'SiW':
-            sub_id = parts[-1]
-            spoof_id = int(sub_id.split("-")[2])
+            spoof_id = int(parts[-1].split("-")[2])
             if spoof_id == 1:
                 stype = 'Live'
             elif spoof_id == 2:
@@ -194,17 +193,14 @@ class Dataset():
             else:  
                 stype = 'Replay'
         elif dataset == 'oulu':
-            vid_id = parts[-1]
             # device_id, bg_id, sub_id, spoof_id
-            spoof_id = int(vid_id.split('_')[-1])
+            spoof_id = int(parts[-1].split('_')[-1]) 
             if spoof_id == 1:
                 stype = "Live"
             elif spoof_id in [2,3]:
                 stype = 'Paper'
             elif spoof_id in [4,5]:
                 stype = 'Replay'
-            else:
-                assert False,print("Please offer a valid oulu img.")
         else:
             assert False, print("Please offer the valid dataset...")
         return im_name, lm_name, dataset, stype

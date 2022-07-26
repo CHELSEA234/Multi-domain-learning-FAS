@@ -51,13 +51,11 @@ class Logging(object):
             text += _name+':'+"{:.3g}".format(value[0]/value[1])+', '
     
     text = text[:-2]+'     '
-    # display loss
     print(text, end='\r')
     self.txt = text
     self.epoch = epoch
     self.step = step
 
-  ## you should display the 
   def display_metric(self, message):
     config = self.config
     print(message, end='\r')
@@ -68,10 +66,6 @@ class Logging(object):
   def save(self, fig, training):
     config = self.config
     step = self.step
-
-    ## GX: this one is important...
-    ## GX: this explains why your program is slow here...
-    # fig = self.get_figures(fig)
 
     if training:
         if step % config.IMG_LOG_FR == 0:
@@ -155,7 +149,6 @@ class Logging(object):
 def l1_loss(x, y, mask=None):
     xshape = x.shape
     if mask is not None:
-        #loss = tf.math.reduce_mean(tf.reshape(tf.abs(tf.subtract(x, y)), [xshape[0], -1]), axis=1)
         loss = tf.math.reduce_sum(tf.abs(x-y) * mask) / (tf.reduce_sum(mask) + 1e-6) / x.shape[3]
     else:
         loss = tf.math.reduce_mean(tf.abs(x-y))

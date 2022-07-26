@@ -22,8 +22,7 @@ import numpy as np
 from model import Generator, Discriminator, region_estimator
 from utils import l1_loss, l2_loss, hinge_loss, Logging
 from dataset import Dataset
-from config import Config_siwm as Config
-from config import Config_siw, Config_oulu
+from config import Config_siwm, Config_siw, Config_oulu
 from metrics import my_metrics
 from tensorboardX import SummaryWriter
 
@@ -47,11 +46,11 @@ class STDNet(object):
 
 		# Checkpoint initialization.
 		self.save_dir = config.save_model_dir
-		self.checkpoint_path_g = self.save_dir+"/gen/cp-{epoch:04d}.ckpt"
-		self.checkpoint_path_re= self.save_dir+"/ReE/cp-{epoch:04d}.ckpt"
-		self.checkpoint_path_d1= self.save_dir+"/dis1/cp-{epoch:04d}.ckpt"
-		self.checkpoint_path_d2= self.save_dir+"/dis2/cp-{epoch:04d}.ckpt"
-		self.checkpoint_path_d3= self.save_dir+"/dis3/cp-{epoch:04d}.ckpt"
+		self.checkpoint_path_g    = self.save_dir+"/gen/cp-{epoch:04d}.ckpt"
+		self.checkpoint_path_re   = self.save_dir+"/ReE/cp-{epoch:04d}.ckpt"
+		self.checkpoint_path_d1   = self.save_dir+"/dis1/cp-{epoch:04d}.ckpt"
+		self.checkpoint_path_d2   = self.save_dir+"/dis2/cp-{epoch:04d}.ckpt"
+		self.checkpoint_path_d3   = self.save_dir+"/dis3/cp-{epoch:04d}.ckpt"
 		self.checkpoint_path_g_op = self.save_dir+"/g_opt/cp-{epoch:04d}.ckpt"
 
 		self.checkpoint_dir_g    = os.path.dirname(self.checkpoint_path_g)
@@ -81,8 +80,6 @@ class STDNet(object):
 			assert last_epoch != 0, print("Restoring LR should not start at 0 epoch.")
 			self.lr = self.lr * np.power(self.config.LEARNING_RATE_DECAY_FACTOR, last_epoch)
 			print(f"Restoring the previous learning rate {self.lr} at epoch {last_epoch}.")
-			## TODO: the recovery should also be done on the m_t and v_t.
-			## TODO: https://ruder.io/optimizing-gradient-descent/
 		self.gen_opt.learning_rate.assign(self.lr)
 
 	def _restore(self, model, checkpoint_dir, pretrain=False):
@@ -107,7 +104,8 @@ class STDNet(object):
 			print('**********************************************************')
 		else:
 			# To load the pretrained model.
-			pretrain_model_dir = 'you_model_path'
+			pretrain_model_dir = '/user/guoxia11/cvl/anti_spoofing/PAMI2020/10_15_new_code_fixed_illu_new/'
+			pretrain_model_dir += f"save_model_data_all_stage_pretrain_type_spoof_decay_2_epoch_180_lr_3e-04_spoof_region/"
 			pretrain_model_dir_list = [pretrain_model_dir+'gen',
 									   pretrain_model_dir+'dis1',
 									   pretrain_model_dir+'dis2',
@@ -122,7 +120,6 @@ class STDNet(object):
 			last_epoch = 0
 
 		for epoch in range(last_epoch, self.config.MAX_EPOCH):
-			print(f"the current learning is: {self.lr:.6f} ")
 			start = time.time()
 			training = True
 			for step in range(self.config.STEPS_PER_EPOCH):
@@ -149,12 +146,7 @@ class STDNet(object):
 	def train_step(self, data, data1, data2, training, step=0):
 		losses = {}
 		figs = []
-		# bsize  = self.config.BATCH_SIZE.
-		# GX: this means self.bs real and self.bs fake. True BS = self.bs * 2
-		bsize  = self.bs
-		imsize = self.config.IMG_SIZE
-
-		# Get images and labels for CNN.
+		bsize, imsize  = self.bs, self.config.IMG_SIZE
 		img_li0, img_sp0, dmap_li0, dmap_sp0, _, _, _ = data
 		img_li1, img_sp1, dmap_li1, dmap_sp1, _, _, _ = data1
 		img_li2, img_sp2, dmap_li2, dmap_sp2, _, _, _ = data2
@@ -174,8 +166,6 @@ class STDNet(object):
 			# Live reconstruction.
 			recon = (1 - p) * (img - n) + p * c
 			trace = img - recon
-
-			# New spoof synthesis.
 			d_img = tf.concat([img[:bsize, ...], recon[bsize:, ...]], axis=0)  
 			d_output_1 = self.disc1(d_img, training=training)
 			d_output_2 = self.disc2(d_img, training=training)
@@ -251,26 +241,23 @@ class STDNet(object):
 		return losses, figs
 
 def main(args):
-
 	# Base Configuration Class
-	config = Config(args)
-	config_siw  = Config_siw(args)
-	config_oulu = Config_oulu(args)
+	config, config_siw, config_oulu = Config_siwm(args), Config_siw(args), Config_oulu(args)
 	config.lr   = args.lr
 	config.type = args.type
 	config.pretrain_folder = args.pretrain_folder
-	config.desc_str = '_data_'+args.data+'_stage_'+config.phase+\
+	config.desc_str = '_data_'+args.data+\
+					  '_stage_'+config.phase+\
 					  '_type_'+config.type+\
 					  '_decay_'+str(config.DECAY_STEP)+\
-					  '_epoch_'+str(args.epoch)+'_lr_'+\
-					  str(config.lr)
+					  '_epoch_'+str(args.epoch)+\
+					  '_lr_'+str(config.lr)
 	config.root_dir = './log'+config.desc_str
 	config.exp_dir  = '/exp'+config.desc_str
 	config.CHECKPOINT_DIR = config.root_dir+config.exp_dir
 	config.tb_dir   = './tb_logs'+config.desc_str
 	config.save_model_dir = "./save_model"+config.desc_str
 	config.SUMMARY_WRITER = SummaryWriter(config.tb_dir)
-
 	os.makedirs(config.root_dir, exist_ok=True)
 	os.makedirs(config.save_model_dir, exist_ok=True)
 	os.makedirs(config.CHECKPOINT_DIR, exist_ok=True)
@@ -281,9 +268,9 @@ def main(args):
 	print(f"The tensorboard results are saved into: {config.tb_dir}")
 	print(f"The trained weights saved into folder: {config.save_model_dir}")
 	print('**********************************************************')
-	config.compile_siwm()
-	config_siw.compile()
-	config_oulu.compile()
+	config.compile(dataset_name='SiWM-v2')
+	config_siw.compile(dataset_name='SiW')
+	config_oulu.compile(dataset_name='Oulu')
 	print('**********************************************************')
 
 	stdnet = STDNet(config, config_siw, config_oulu)
@@ -294,13 +281,13 @@ def main(args):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument('--cuda', type=int, default=3, help='The gpu num to use.')
+  parser.add_argument('--cuda', type=int, default=6, help='The gpu num to use.')
   parser.add_argument('--stage', type=str, default='ft', choices=['ft','pretrain','ub'])
   parser.add_argument('--type', type=str, default='spoof', choices=['spoof','age','race','illu'])
   parser.add_argument('--set', type=str, default='all', help='To choose from the predefined 14 types.')
   parser.add_argument('--epoch', type=int, default=60, help='How many epochs to train the model.')
   parser.add_argument('--data', type=str, default='all', choices=['all','SiW','SiWM','oulu'])
-  parser.add_argument('--lr', type=float, default=1e-5, help='The starting learning rate.')
+  parser.add_argument('--lr', type=float, default=1e-7, help='The starting learning rate.')
   parser.add_argument('--decay_step', type=int, default=2, help='The learning rate decay step.')
   parser.add_argument('--pretrain_folder', type=str, default='./', help='Deprecated function.')
   args = parser.parse_args()

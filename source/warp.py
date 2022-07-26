@@ -201,4 +201,4 @@ def generate_uv_map(source, uv, img_size):
     offsetmap = np.reshape(_offsetmapz,(img_size,img_size,1))
     offsetmap = np.nan_to_num(offsetmap)  
     return offsetmap
-
+    
