@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2022
 # 
 # Authors: Xiao Guo, Yaojie Liu, Anil Jain, and Xiaoming Liu.
@@ -20,13 +21,27 @@ import time
 import math
 import numpy as np
 from model import Generator, Discriminator, region_estimator
-from utils import l1_loss, l2_loss, hinge_loss, Logging
+from utils import l1_loss, l2_loss, Logging
 from dataset import Dataset
 from config import Config_siwm, Config_siw, Config_oulu
-from metrics import my_metrics
 from tensorboardX import SummaryWriter
 
-class STDNet(object):
+class SRENet(object):
+	"""
+	the SRENet class.
+
+	Attributes:
+	-----------
+		configurations: config, config_siw, and config_oulu.
+		modules: gen_pretrained, gen, RE, multi-disc and optimizers.
+		various directories for checkpoints. 
+		log: log handler.
+
+	Methods:
+	-----------
+		basic functions: update_lr, _restore, _save.
+		optimization functions: train and train_step.
+	"""
 	def __init__(self, config, config_siw, config_oulu):
 		self.config = config
 		self.config_siw  = config_siw
@@ -83,11 +98,13 @@ class STDNet(object):
 		self.gen_opt.learning_rate.assign(self.lr)
 
 	def _restore(self, model, checkpoint_dir, pretrain=False):
-		last_checkpoint = tf.train.latest_checkpoint(checkpoint_dir)
-		model.load_weights(last_checkpoint)
 		if not pretrain:
+			last_checkpoint = tf.train.latest_checkpoint(checkpoint_dir)
+			model.load_weights(last_checkpoint)
 			last_epoch = int((last_checkpoint.split('.')[1]).split('-')[-1])
 			return last_epoch
+		else:
+			model.load_weights(checkpoint_dir+'/cp-0179.ckpt')
 
 	def _save(self, model, checkpoint_path, epoch):
 		model.save_weights(checkpoint_path.format(epoch=epoch))
@@ -104,13 +121,14 @@ class STDNet(object):
 			print('**********************************************************')
 		else:
 			# To load the pretrained model.
-			pretrain_model_dir = '/user/guoxia11/cvl/anti_spoofing/PAMI2020/10_15_new_code_fixed_illu_new/'
-			pretrain_model_dir += f"save_model_data_all_stage_pretrain_type_spoof_decay_2_epoch_180_lr_3e-04_spoof_region/"
+			pretrain_model_dir = config.pretrain_folder
+			# pretrain_model_dir = '/user/guoxia11/cvl/anti_spoofing/PAMI2020/10_15_new_code_fixed_illu_new/'
+			# pretrain_model_dir += f"save_model_data_all_stage_pretrain_type_spoof_decay_2_epoch_180_lr_3e-04_spoof_region/"
 			pretrain_model_dir_list = [pretrain_model_dir+'gen',
 									   pretrain_model_dir+'dis1',
 									   pretrain_model_dir+'dis2',
 									   pretrain_model_dir+'dis3']
-			last_checkpoint = tf.train.latest_checkpoint(pretrain_model_dir+'gen')
+			# last_checkpoint = tf.train.latest_checkpoint(pretrain_model_dir+'gen')
 			for i, j in zip([self.gen, self.disc1, self.disc2, self.disc3], pretrain_model_dir_list):
 				self._restore(i, j, True)
 			print('**********************************************************')
@@ -176,7 +194,8 @@ class STDNet(object):
 			real_change = tf.zeros([4,256,256])
 			siwm_change = tf.cast(tf.greater(tf.reduce_sum(tf.abs(trace[4:6,:,:]), axis=3), 0.3),tf.float32)
 			siw_oulu_change = tf.cast(tf.greater(tf.reduce_sum(tf.abs(trace[6:,:,:]), axis=3), 0.1),tf.float32)
-			p_significant_change = tf.stop_gradient(tf.concat([real_change, siwm_change, siw_oulu_change], axis=0))
+			p_significant_change = tf.stop_gradient(tf.concat([real_change, siwm_change, 
+															   siw_oulu_change], axis=0))
 			map_loss = l1_loss(tf.squeeze(region_map), p_significant_change)
 			p_post_constraint = tf.reduce_mean(
 											tf.abs(tf.squeeze(p[bsize:, ...]) - p_significant_change[bsize:, ...])
@@ -273,11 +292,11 @@ def main(args):
 	config_oulu.compile(dataset_name='Oulu')
 	print('**********************************************************')
 
-	stdnet = STDNet(config, config_siw, config_oulu)
+	srenet = SRENet(config, config_siw, config_oulu)
 	dataset_train_siwm = Dataset(config, 'train')
 	dataset_train_siw  = Dataset(config_siw, 'train')
 	dataset_train_oulu = Dataset(config_oulu, 'train')
-	stdnet.train(dataset_train_siwm, dataset_train_siw, dataset_train_oulu, config)
+	srenet.train(dataset_train_siwm, dataset_train_siw, dataset_train_oulu, config)
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
@@ -289,6 +308,6 @@ if __name__ == "__main__":
   parser.add_argument('--data', type=str, default='all', choices=['all','SiW','SiWM','oulu'])
   parser.add_argument('--lr', type=float, default=1e-7, help='The starting learning rate.')
   parser.add_argument('--decay_step', type=int, default=2, help='The learning rate decay step.')
-  parser.add_argument('--pretrain_folder', type=str, default='./', help='Deprecated function.')
+  parser.add_argument('--pretrain_folder', type=str, default='./pre_trained/', help='Pretrain weight.')
   args = parser.parse_args()
   main(args)

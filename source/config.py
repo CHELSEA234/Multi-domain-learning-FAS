@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2022
 # 
 # Authors: Xiao Guo, Yaojie Liu, Anil Jain, and Xiaoming Liu.
@@ -22,6 +23,21 @@ from utils import file_reader
 
 # Configuration class.
 class Config(object):
+	"""
+	the meta configuration class.
+
+	Attributes:
+	-----------
+		configurations: config, config_siw, and config_oulu.
+		modules: gen_pretrained, gen, RE, multi-disc and optimizers.
+		various directories for checkpoints. 
+		log: log handler.
+
+	Methods:
+	-----------
+		basic functions: update_lr, _restore, _save.
+		optimization functions: train and train_step.
+	"""
 	# Config.
 	LOG_DEVICE_PLACEMENT = False
 	IMG_SIZE = 256
@@ -29,7 +45,7 @@ class Config(object):
 	FIG_SIZE = 128	
 
 	# Training meta.
-	STEPS_PER_EPOCH = 2000
+	STEPS_PER_EPOCH = 1000
 	IMG_LOG_FR = 100
 	TXT_LOG_FR = 1000
 	
@@ -70,6 +86,7 @@ class Config(object):
 		pass
 
 	def _filter_ill_siw(self, old_list=[], state='pretrain'):
+		'''assigns siw to different illumination.'''
 		new_list = []
 		assert state in ['pretrain', 'ft'], print("Please offer the right stage.")
 		target_list = ['0', '1', '3', '4'] if state == 'pretrain' else ['2']
@@ -80,6 +97,7 @@ class Config(object):
 		return new_list
 
 	def _filter_ill_oulu(self, old_list=[], state='pretrain'):
+		'''assigns oulu to different illumination.'''
 		new_list = []
 		assert state in ['pretrain', 'ft'], print("Please offer the right stage.")
 		target_list = ['1', '2'] if state == 'pretrain' else ['3']
@@ -90,7 +108,8 @@ class Config(object):
 				new_list.append(_)
 		return new_list
 
-	def _list_gen(self, li_list, sp_list, dataset_name, state):
+	def illu_list_gen(self, li_list, sp_list, dataset_name, state):
+		'''calls fuctions to assign either oulu or siw into different illuminations.'''
 		if dataset_name == 'Oulu':
 			return self._filter_ill_oulu(li_list, state), self._filter_ill_oulu(sp_list, state)
 		elif dataset_name == 'SiW':
@@ -99,8 +118,7 @@ class Config(object):
 			return 
 
 	def _construct_ill_dict(self, dataset_name):
-		#########################################################
-		## each subject has been assigned with one illumation label.
+		'''each subject is associated with one illumination.'''
 		csv_file_name = "/user/guoxia11/cvl/anti_spoofing/illumination_estimation/DPR/combine_label_illu.csv"
 		csv_file = open(csv_file_name)
 		csv_reader = csv.reader(csv_file, delimiter=',')
@@ -113,6 +131,7 @@ class Config(object):
 		csv_file.close()
 
 	def compile(self, dataset_name='SiW'):
+		'''generates train and test list for SIW and Oulu.'''
 		assert dataset_name in ['SiW', 'Oulu'], print("Please offer the correct dataset.")
 		# Training data.
 		#########################################################
@@ -132,23 +151,23 @@ class Config(object):
 		if self.phase=='pretrain':
 			## the new version pretrain has all 1,2 but small amount of 3.
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames)
-			self.LI_DATA_DIR, self.SP_DATA_DIR = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
-																state='pretrain')
+			self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
+																	dataset_name, state='pretrain')
 		elif self.phase=='ft':
 			## the new version ft in ill, it combines BCD, with small amount of 1,2, most 3.
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames)
 			if self.type == 'illu':
-				self.LI_DATA_DIR, self.SP_DATA_DIR = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
-																	state='ft')
+				self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
+																		dataset_name, state='ft')
 		elif self.phase=='ub':
 			new_li, new_sp = [], []
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames0)
-			new_li_pre, new_sp_pre = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
-													state='pretrain')
+			new_li_pre, new_sp_pre = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
+														dataset_name, state='pretrain')
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames1)
 			if self.type=='illu':
-				new_li_ft, new_sp_ft = self._list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, 
-													  state='ft')
+				new_li_ft, new_sp_ft = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
+														  dataset_name, state='ft')
 			else:
 				new_li_ft, new_sp_ft = self.LI_DATA_DIR, self, SP_DATA_DIR
 			self.LI_DATA_DIR = new_li_pre + new_li_ft
@@ -291,6 +310,7 @@ class Config_siwm(Config):
 
 	# overriding the compile method.
 	def compile(self, dataset_name='SiWM-v2'):
+		'''generates train and test list for SIW-Mv2.'''
 		# Train data.
 		## GX: compile_siwm does not have filter_out process for the new illumination.
 		self.SP_DATA_DIR, self.LI_DATA_DIR = [], []

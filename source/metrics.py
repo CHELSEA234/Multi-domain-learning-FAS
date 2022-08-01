@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2022
 # 
 # Authors: Xiao Guo, Yaojie Liu, Anil Jain, and Xiaoming Liu.
@@ -17,13 +18,19 @@ from sklearn import metrics
 import numpy as np
 
 def get_tpr_at_fpr(tpr_lst, fpr_lst, score_lst, fpr_value):
-    abs_fpr = np.absolute(fpr_lst - fpr_value)
-    idx = np.argmin(abs_fpr)
-    return tpr_lst[idx], score_lst[idx]
-
+	"""
+	returns true postive rate and threshold given false positive rate value.
+	"""
+	abs_fpr = np.absolute(fpr_lst - fpr_value)
+	idx = np.argmin(abs_fpr)
+	return tpr_lst[idx], score_lst[idx]
 
 def my_metrics(label_list, pred_list, val_phase=False):
-
+	"""
+	computes FAS metrics. 
+		Parameters: 
+			val_phase (bool): flag for train and test stage.
+	"""
 	fpr, tpr, scores = metrics.roc_curve(label_list,pred_list,
 										 drop_intermediate=True)
 	auc_score = metrics.auc(fpr,tpr)
@@ -48,7 +55,7 @@ def my_metrics(label_list, pred_list, val_phase=False):
 			best_BP   = BPCER
 			best_threshold = scores[idx_]
 
-	## fnr == 0.5%
+	## fnr == 0.5% as the first PAMI paper version. 
 	abs_fnr = np.absolute(fnr - 0.005)
 	idx = np.argmin(abs_fnr)
 	res_tpr = tpr[idx]
@@ -59,3 +66,4 @@ def my_metrics(label_list, pred_list, val_phase=False):
 		return best_AP, best_BP, best_ACER, EER, res_tpr, auc_score, [tpr_h, tpr_m, tpr_l]
 	else:
 		return best_AP, best_BP, best_ACER, EER, res_tpr, auc_score
+		
