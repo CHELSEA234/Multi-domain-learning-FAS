@@ -4,6 +4,7 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
 
 <p align="center">
 <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/Dataset_demo.png" alt="drawing" width="800"/>
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/age_gallery.png" alt="drawing" width="900"/>
 <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/distribution.png" alt="drawing" width="800"/>
 </p>
 
