@@ -13,7 +13,8 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
     - OULU: [download link](https://sites.google.com/site/oulunpudatabase/)
     - SIW: [download link](http://cvlab.cse.msu.edu/siw-spoof-in-the-wild-database.html)
     - SIWM-v2: [download link](https://arxiv.org/pdf/1904.02860.pdf)
-- Then config.py and data partitioning files in this page can be used to construct the dataset.
+- Data partitioning files (OULU_list, SIW_list and SIWM_list) assign samples into different sub-dataset of FASMD.
+- run config.py will construct the FASMD.
 
 ## Acknowledge
 - We have used fantastic following script for age estimation and lighting estimation.
