@@ -151,23 +151,19 @@ class Config(object):
 		if self.phase=='pretrain':
 			## the new version pretrain has all 1,2 but small amount of 3.
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames)
-			self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
-																	dataset_name, state='pretrain')
+			self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, state='pretrain')
 		elif self.phase=='ft':
 			## the new version ft in ill, it combines BCD, with small amount of 1,2, most 3.
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames)
 			if self.type == 'illu':
-				self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
-																		dataset_name, state='ft')
+				self.LI_DATA_DIR, self.SP_DATA_DIR = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, state='ft')
 		elif self.phase=='ub':
 			new_li, new_sp = [], []
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames0)
-			new_li_pre, new_sp_pre = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
-														dataset_name, state='pretrain')
+			new_li_pre, new_sp_pre = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, state='pretrain')
 			self.LI_DATA_DIR, self.SP_DATA_DIR = self.search_folder_wrapper(self.root_dir, filenames1)
 			if self.type=='illu':
-				new_li_ft, new_sp_ft = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, 
-														  dataset_name, state='ft')
+				new_li_ft, new_sp_ft = self.illu_list_gen(self.LI_DATA_DIR, self.SP_DATA_DIR, dataset_name, state='ft')
 			else:
 				new_li_ft, new_sp_ft = self.LI_DATA_DIR, self, SP_DATA_DIR
 			self.LI_DATA_DIR = new_li_pre + new_li_ft
