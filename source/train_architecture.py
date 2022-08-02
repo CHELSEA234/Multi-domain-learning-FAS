@@ -122,12 +122,10 @@ class SRENet(object):
 		else:
 			# To load the pretrained model.
 			pretrain_model_dir = config.pretrain_folder
-			# pretrain_model_dir = '/user/guoxia11/cvl/anti_spoofing/PAMI2020/10_15_new_code_fixed_illu_new/'
-			# pretrain_model_dir += f"save_model_data_all_stage_pretrain_type_spoof_decay_2_epoch_180_lr_3e-04_spoof_region/"
 			pretrain_model_dir_list = [pretrain_model_dir+'gen',
-									   pretrain_model_dir+'dis1',
-									   pretrain_model_dir+'dis2',
-									   pretrain_model_dir+'dis3']
+						   pretrain_model_dir+'dis1',
+						   pretrain_model_dir+'dis2',
+						   pretrain_model_dir+'dis3']
 			# last_checkpoint = tf.train.latest_checkpoint(pretrain_model_dir+'gen')
 			for i, j in zip([self.gen, self.disc1, self.disc2, self.disc3], pretrain_model_dir_list):
 				self._restore(i, j, True)
@@ -145,7 +143,7 @@ class SRENet(object):
 				img_batch_siw  = dataset_siw.nextit()
 				img_batch_oulu = dataset_oulu.nextit()
 				losses, figs = self.train_step(img_batch_siwm, img_batch_siw, img_batch_oulu, 
-											   training, tf.constant(step))
+							       training, tf.constant(step))
 				self.log.display(losses, epoch, step, training, self.config.STEPS_PER_EPOCH)
 				self.log.save(figs, training)
 				iter_num = self.config.STEPS_PER_EPOCH*epoch+step
@@ -194,12 +192,10 @@ class SRENet(object):
 			real_change = tf.zeros([4,256,256])
 			siwm_change = tf.cast(tf.greater(tf.reduce_sum(tf.abs(trace[4:6,:,:]), axis=3), 0.3),tf.float32)
 			siw_oulu_change = tf.cast(tf.greater(tf.reduce_sum(tf.abs(trace[6:,:,:]), axis=3), 0.1),tf.float32)
-			p_significant_change = tf.stop_gradient(tf.concat([real_change, siwm_change, 
-															   siw_oulu_change], axis=0))
+			p_significant_change = tf.stop_gradient(tf.concat([real_change, siwm_change, siw_oulu_change], axis=0))
 			map_loss = l1_loss(tf.squeeze(region_map), p_significant_change)
-			p_post_constraint = tf.reduce_mean(
-											tf.abs(tf.squeeze(p[bsize:, ...]) - p_significant_change[bsize:, ...])
-											)
+			p_post_constraint = tf.reduce_mean(tf.abs(tf.squeeze(p[bsize:, ...]) 
+								  - p_significant_change[bsize:, ...]))
 			p_loss = p_prior_knowledge * 0.1 + p_post_constraint
   		
   			# Trace constraint loss.
@@ -228,8 +224,8 @@ class SRENet(object):
 			gen_trainable_vars  = self.gen.trainable_variables
 			reg_trainable_vars  = self.RE.trainable_variables
 			disc_trainable_vars = self.disc1.trainable_variables + \
-								  self.disc2.trainable_variables + \
-								  self.disc3.trainable_variables
+					      self.disc2.trainable_variables + \
+					      self.disc3.trainable_variables
 
 			# Generate gradients.
 			r_gradients = reg_tape.gradient(map_loss, reg_trainable_vars)
@@ -266,11 +262,11 @@ def main(args):
 	config.type = args.type
 	config.pretrain_folder = args.pretrain_folder
 	config.desc_str = '_data_'+args.data+\
-					  '_stage_'+config.phase+\
-					  '_type_'+config.type+\
-					  '_decay_'+str(config.DECAY_STEP)+\
-					  '_epoch_'+str(args.epoch)+\
-					  '_lr_'+str(config.lr)
+			  '_stage_'+config.phase+\
+			  '_type_'+config.type+\
+			  '_decay_'+str(config.DECAY_STEP)+\
+			  '_epoch_'+str(args.epoch)+\
+			  '_lr_'+str(config.lr)
 	config.root_dir = './log'+config.desc_str
 	config.exp_dir  = '/exp'+config.desc_str
 	config.CHECKPOINT_DIR = config.root_dir+config.exp_dir
