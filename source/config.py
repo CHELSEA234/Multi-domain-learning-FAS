@@ -51,12 +51,11 @@ class Config(object):
 	
 	# Initial learning rate.
 	lr = 1e-4	
-	NUM_EPOCHS_PER_DECAY = 10.0  		# Epochs after which learning rate decays.
 	LEARNING_RATE_DECAY_FACTOR = 0.89  	# The decay to use for the moving average.
 	LEARNING_MOMENTUM = 0.999   
 	MOVING_AVERAGE_DECAY = 0.9999		# The decay to use for the moving average.       
 	GAN = 'ls' # 'hinge', 'ls'
-	DECAY_STEP = 1
+	DECAY_STEP = 10
 	n_layer_D = 4
 
 	def __init__(self, args):
