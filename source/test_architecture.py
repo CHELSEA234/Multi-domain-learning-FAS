@@ -115,8 +115,7 @@ class SRENet(object):
 		for test_mode in ['test_A']:
 			update_list = self.test_step(test_mode)
 			assert len(update_list[-1]) == len(update_list[0]), print("Their length should match.")
-			print ('\n*****Time for epoch {} is {} sec*****'.format(self.config.epoch_eval+1, 
-																	int(time.time()-start)))
+			print ('\n*****Time for epoch {} is {} sec*****'.format(self.config.epoch_eval+1, int(time.time()-start)))
 		self.csv_file.close()
 		self.SUMMARY_WRITER.close()
 
@@ -200,11 +199,11 @@ def main(args):
 	config.epoch_eval      = args.epoch_eval
 	config.pretrain_folder = args.pretrain_folder
 	config.desc_str = '_data_'+args.data+\
-					  '_stage_'+config.phase+\
-					  '_type_'+config.type+\
-					  '_decay_'+str(config.DECAY_STEP)+\
-					  '_epoch_'+str(args.epoch)+\
-					  '_lr_'+str(config.lr)
+			  '_stage_'+config.phase+\
+			  '_type_'+config.type+\
+			  '_decay_'+str(config.DECAY_STEP)+\
+			  '_epoch_'+str(args.epoch)+\
+			  '_lr_'+str(config.lr)
 	config.root_dir = './log'+config.desc_str
 	config.exp_dir  = '/exp'+config.desc_str
 	config.CHECKPOINT_DIR = config.root_dir+config.exp_dir
