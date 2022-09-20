@@ -82,7 +82,7 @@ Please feel free to ask questions and send it to **guoxia11@msu.edu**. All email
 ## Reference
 If you would like to use our work, please cite:
 ```Bibtex
-@inproceedings{xiaoguo2023MDFAS
+@inproceedings{xiaoguo2022MDFAS
       title={Multi-domain Learning for Updating Face Anti-spoofing Models}, 
       author={Xiao, Guo and Yaojie, Liu, Anil, Jain and Liu, Xiaoming},
       booktitle={In Proceeding of European Conference on Computer Vision (ECCV 2022)},
