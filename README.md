@@ -40,8 +40,8 @@ The pre-trained model can be found in [link](https://drive.google.com/drive/fold
 
 ## Reference
 If you would like to use our work, please cite:
-```
-@inproceedings{xiaoguo2023MDFAS
+```Bibtex
+@inproceedings{xiaoguo2022MDFAS
       title={Multi-domain Learning for Updating Face Anti-spoofing Models}, 
       author={Xiao, Guo and Yaojie, Liu, Anil, Jain and Liu, Xiaoming},
       booktitle={In Proceeding of European Conference on Computer Vision (ECCV 2022)},
