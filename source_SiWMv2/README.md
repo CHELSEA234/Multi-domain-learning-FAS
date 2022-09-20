@@ -80,7 +80,7 @@ The baseline performance and trained weights will be updated on this page, recen
 Please feel free to ask questions and send it to **guoxia11@msu.edu**. All emails will be replied within less than **5** bussiness days. 
 
 ## Reference
-If you would like to use our work, please cite:
+If you would like to use our work, please consider to cite:
 ```Bibtex
 @inproceedings{xiaoguo2022MDFAS
       title={Multi-domain Learning for Updating Face Anti-spoofing Models}, 
