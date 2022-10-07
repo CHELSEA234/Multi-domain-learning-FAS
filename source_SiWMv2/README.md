@@ -1,6 +1,6 @@
 ## SiWM-v2 Dataset Introduction:
 We have curated SiW-Mv2 dataset that includes $14$ spoof types spanning from typical print and replay attack, to various masks, impersonation makeup and physical material coverings. SiW-Mv2 has *the largest variance* in terms of the spoof pattern, each of these patterns 
-are designated and verified by the IARPA project. For example, obfuscation makeup and partial coverings intend to hide subject's identity; impersonate and $3$ mask modifies the subject appearance for imitating other identities. <br />
+are designated and verified by the IARPA project. For example, obfuscation makeup and partial coverings intend to hide subject's identity; impersonate and $3$ mask modifies the subject appearance for imitating other identities. <br /> For download, please first ask your advisor to sign the Dataset Release Agreement (DRA) form [link](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiWMv2/DRA_form_SIWMv2.pdf). Then send this application to **guoxia11@msu.edu** for the download link.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Statistics
