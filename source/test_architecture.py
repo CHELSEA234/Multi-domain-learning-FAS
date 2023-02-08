@@ -99,18 +99,18 @@ class SRENet(object):
 		'''the main inference entrance.'''
 		## setup the csv handler.
 		self.csv_writer = csv.writer(self.csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-		self.csv_writer.writerow(['Video name', 'Dataset', 'Depth', 'Region', \
-					'Content', 'Additive', 'Label', 'test_mode'])
+		csv_title = ['Video name', 'Dataset', 'Depth', 'Region', 'Content', 'Additive', 'Label', 'test_mode']
+		self.csv_writer.writerow(csv_title)
 
-		## loading the target epoch weight.
-		self.log.epoch = self.config.epoch_eval
 		for model_, model_dir_ in zip(self.model_list, self.model_d_list):
-			current_checkpoint = model_dir_ + f"/cp-{self.config.epoch_eval:04d}.ckpt"
-			model_.load_weights(current_checkpoint)
+			epoch_suffix = f"/cp-{59:04d}.ckpt"
+			current_checkpoint = model_dir_ + epoch_suffix
+			model_.load_weights(current_checkpoint).expect_partial()
+			print(f"loading weights for {model_dir_}.")
+			start = time.time()
 
 		## inference.
 		start = time.time()
-		# for test_mode in ["test_A", "test_B"]:
 		for test_mode in ['test_A']:
 			update_list = self.test_step(test_mode)
 			assert len(update_list[-1]) == len(update_list[0]), print("Their length should match.")
@@ -178,12 +178,7 @@ def main(args):
 	config.type = args.type
 	config.epoch_eval      = args.epoch_eval
 	config.pretrain_folder = args.pretrain_folder
-	config.desc_str = '_data_'+args.data+\
-			  '_stage_'+config.phase+\
-			  '_type_'+config.type+\
-			  '_decay_'+str(config.DECAY_STEP)+\
-			  '_epoch_'+str(args.epoch)+\
-			  '_lr_'+str(config.lr)
+	config.desc_str = '_trained'
 	config.root_dir = './log'+config.desc_str
 	config.exp_dir  = '/exp'+config.desc_str
 	config.CHECKPOINT_DIR = config.root_dir+config.exp_dir
