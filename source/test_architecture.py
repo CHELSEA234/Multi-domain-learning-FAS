@@ -174,23 +174,6 @@ class SRENet(object):
 		n = tf.reduce_mean(n, axis=[1,2,3])
 		return d, p, c, n, p_area
 
-	def test_update(self, label_list, score_list, epoch, test_mode):
-		'''measures the different FAS metrics.'''
-		APCER, BPCER, ACER, EER, res_tpr_05, auc_score, [tpr_fpr_h, tpr_fpr_m, tpr_fpr_l] \
-						= my_metrics(label_list, score_list, val_phase=False)
-		message_cur = f"Test: ACER is {ACER:.3f}, EER is {EER:.3f}, AUC is {auc_score:.3f},  " 
-		message_cur += f"tpr_fpr_03 is {tpr_fpr_m:.3f} and tpr_fpr_01 is {tpr_fpr_l:.3f}"
-		self.log.display_metric(message_cur)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/APCER', APCER, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/BPCER', BPCER, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/ACER',  ACER, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/EER',   EER, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/AUC',   auc_score, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/tpr_fnr_05', res_tpr_05, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/tpr_fpr_05', tpr_fpr_h, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/tpr_fpr_03', tpr_fpr_m, epoch)
-		self.SUMMARY_WRITER.add_scalar(f'{test_mode}/tpr_fpr_01', tpr_fpr_l, epoch)
-
 def main(args):
 	# Base Configuration Class
 	config, config_siw, config_oulu = Config_siwm(args), Config_siw(args), Config_oulu(args)
