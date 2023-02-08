@@ -98,10 +98,9 @@ class SRENet(object):
 	def inference(self, config):
 		'''the main inference entrance.'''
 		## setup the csv handler.
-		self.csv_writer = csv.writer(self.csv_file, delimiter=',', quotechar='"', 
-									 quoting=csv.QUOTE_MINIMAL)
+		self.csv_writer = csv.writer(self.csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 		self.csv_writer.writerow(['Video name', 'Dataset', 'Depth', 'Region', \
-								  'Content', 'Additive', 'Label', 'test_mode'])
+					'Content', 'Additive', 'Label', 'test_mode'])
 
 		## loading the target epoch weight.
 		self.log.epoch = self.config.epoch_eval
@@ -138,8 +137,6 @@ class SRENet(object):
 		num_step = int(img_num/config_cur.BATCH_SIZE)
 		d_score, p_score, c_score, n_score, label_lst = [],[],[],[],[]
 		for step in tqdm(range(num_step)):
-			if step % 50 != 0:
-				continue
 			img, img_name = dataset_test.nextit()
 			img_name = img_name.numpy().tolist()
 			d, p, c, n, p_area = self._test_graph(img)
@@ -156,7 +153,7 @@ class SRENet(object):
 					label_cur = 1
 				label_lst.append(label_cur)
 				self.csv_writer.writerow([img_name_cur, prefix_dataset, d_score[i], p_score[i],
-										  c_score[i], n_score[i], label_cur, test_mode])
+							c_score[i], n_score[i], label_cur, test_mode])
 			self.log.step = step
 		config_cur.BATCH_SIZE = tmp_bs
 		return d_score, p_score, c_score, n_score, label_lst
