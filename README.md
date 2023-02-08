@@ -36,7 +36,7 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
 ```
 
 ## Pre-trained model
-The pre-trained model can be found in [link](https://drive.google.com/drive/folders/1CHIzOUyy3YvpDi-gP6nCIdOPHJWWxQQo?usp=sharing)
+The pre-trained model can be found in [link](https://drive.google.com/drive/folders/1CHIzOUyy3YvpDi-gP6nCIdOPHJWWxQQo?usp=sharing), or you can find in the `source/save_model_trained` folder.
 
 ## Reference
 If you would like to use our work, please cite:
