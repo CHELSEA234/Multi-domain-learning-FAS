@@ -89,12 +89,5 @@ If you would like to use our work, please consider to cite:
       year={2022}
       
 }
-@inproceedings{cvpr19yaojie,
-    title={Deep Tree Learning for Zero-shot Face Anti-Spoofing},
-    author={Yaojie Liu, Joel Stehouwer, Amin Jourabloo, Xiaoming Liu},
-    booktitle={In Proceeding of IEEE Computer Vision and Pattern Recognition (CVPR 2019)},
-    address={Long Beach, CA},
-    year={2019}
-}
 ```
 This github will continue to update in the near future. If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
