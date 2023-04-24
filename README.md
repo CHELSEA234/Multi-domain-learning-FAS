@@ -13,7 +13,8 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 > Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
 
 ### 1. Setup the environment.
-Please go to the folder `./source_SiW_Mv2`, and then you can see the enviornment `environment.yml`. To create your own environment by:
+- Please go to the folder `./source_SiW_Mv2`, and then you can see the enviornment `environment.yml`. 
+- To create your own environment by:
   ```
   conda env create -f environment.yml
   ```
@@ -46,7 +47,8 @@ bash inference.sh
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/intermediate_result.png" alt="drawing" width="300"/>
 </p>
 
-- We provide detailed dataset preprocessing steps as well as the training scripts. After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
+- We provide detailed dataset preprocessing steps as well as the training scripts. 
+- After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
 
 #### 3.1. Data Preparation
 - Please first sign the [DRA form](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/DRA_form_SIWMv2.pdf) before donwloading the SiW-Mv2 dataset. 
