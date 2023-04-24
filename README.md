@@ -1,7 +1,7 @@
 # Multi-domain Learning for Updating Face Anti-spoofing Models
 
 <p align="center">
-<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/dataset_gallery.png" alt="drawing" width="1000"/>
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/dataset_gallery.png" alt="drawing" width="1000"/>
 </p>
 
 This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks **V**ersion 2 (SiW-Mv2) dataset and the official implementation of our ECCV2022 oral paper "Multi-domain Learning for Updating Face Anti-spoofing Models". [[Arxiv]](https://arxiv.org/pdf/2208.11148.pdf) [[SiW-Mv2 Dataset]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf) 
@@ -35,7 +35,8 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
     ├── enviornment.yml
     ├── metrics.py
     ├── utils.py
-    └── warp.py
+    ├── warp.py
+    └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
 ```
 
 - To create your own environment by:
@@ -67,8 +68,8 @@ bash inference.sh
 
 ### 3. Train and Testing
 <p align="center">
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/train_tb.png" alt="drawing" width="500"/>
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/intermediate_result.png" alt="drawing" width="300"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
 </p>
 
 - We provide detailed dataset preprocessing steps as well as the training scripts. 
