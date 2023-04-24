@@ -27,9 +27,9 @@ The enviornment setup file is `environment.yml`, please create your own environm
   ```
 
 ### 2. Quick Usage
-The pre-trained weights for $3$ different protocols and corresponding `.csv` result files can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
+- The pre-trained weights for $3$ different protocols and corresponding `.csv` result files can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
 
-To reproduce the numerical results of the baseline, please run the following command. Result will output to the screen.
+- To reproduce the numerical results of the baseline, please run the following command. Result will output to the screen.
 ```bash 
 bash csv_parser.sh
 Compute the protocol I scores.
@@ -37,13 +37,13 @@ AP:  ['2.3', '2.3', '0.4', '2.3', '0.0', '7.3', '5.4', '0.0', '10.7', '0.0', ...
 ...
 ```
 
-For inference on a single image or a directory of images, please run the following command. Of course, users can play around with their own images.
+- For inference on a single image or a directory of images, please run the following command. Of course, users can play around with their own images.
 
-Results will output to the screen and saved into the `.csv` file.
+- Results will output to the screen and saved into the `.csv` file.
 ```bash 
 bash inference.sh
 ...
-Results written to ./result/result.csv
+- Results written to ./result/result.csv
 ...
 ./demo/1.png is classified as Spoof with the score 0.52
 ```
@@ -53,7 +53,8 @@ Results written to ./result/result.csv
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/train_tb.png" alt="drawing" width="500"/>
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/intermediate_result.png" alt="drawing" width="300"/>
 </p>
-We provide detailed dataset preprocessing steps as well as the training scripts. After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
+
+- We provide detailed dataset preprocessing steps as well as the training scripts. After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
 
 #### 3.1. Data Preparation
 - Please first sign the [DRA form](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/DRA_form_SIWMv2.pdf) before donwloading the SiW-Mv2 dataset. 
