@@ -17,11 +17,11 @@ This is the official code for our ECCV2022 oral paper "Multi-domain Learning for
 
 ## Dataset
 The FASMD Dataset is constructed on  SiW-Mv2, SiW, and Oulu-NPU. It consists of five sub-datasets: dataset A is the
-source domain dataset, and B, C, D and E are four target domain datasets. The details can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/dataset)
+source domain dataset, and B, C, D and E are four target domain datasets. Note that SiW-Mv2 dataset includes $14$ spoof types spanning from typical print and replay attack, to various masks, impersonation makeup and physical material coverings. SiW-Mv2 has *the largest variance* in terms of the spoof pattern, each of these patterns are designated and verified by the IARPA project. The details can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/dataset)
 
 <p align="center">
-<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/Dataset_demo.png" alt="drawing" width="800"/>
-<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/distribution.png" alt="drawing" width="800"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/Dataset_demo.png" alt="drawing" width="800"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/figures/distribution.png" alt="drawing" width="800"/>
 </p>
 
 ## Train and Inference
@@ -36,17 +36,16 @@ source domain dataset, and B, C, D and E are four target domain datasets. The de
 ```
 
 ## Pre-trained model
-The pre-trained model can be found in [link](https://drive.google.com/drive/folders/1CHIzOUyy3YvpDi-gP6nCIdOPHJWWxQQo?usp=sharing)
+The pre-trained model can be found in [link](https://drive.google.com/drive/folders/1CHIzOUyy3YvpDi-gP6nCIdOPHJWWxQQo?usp=sharing), or you can find in the `source/save_model_trained` folder.
 
 ## Reference
 If you would like to use our work, please cite:
-```
-@inproceedings{xiaoguo2023MDFAS
-      title={Multi-domain Learning for Updating Face Anti-spoofing Models}, 
-      author={Xiao, Guo and Yaojie, Liu, Anil, Jain and Liu, Xiaoming},
-      booktitle={In Proceeding of European Conference on Computer Vision (ECCV 2022)},
-      year={2022}
-      
+```Bibtex
+@inproceedings{xiaoguo2022MDFAS,
+    title={Multi-domain Learning for Updating Face Anti-spoofing Models},
+    author={Guo, Xiao and Liu, Yaojie and Jain, Anil and Liu, Xiaoming},
+    booktitle={ECCV},
+    year={2022}
 }
 ```
 This github will continue to update in the near future. If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
