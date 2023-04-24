@@ -50,8 +50,8 @@ Results written to ./result/result.csv
 
 ### 3. Train and Testing
 <p align="center">
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/train_tb.png" alt="drawing" width="580"/>
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/intermediate_result.png" alt="drawing" width="350"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/train_tb.png" alt="drawing" width="500"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/intermediate_result.png" alt="drawing" width="300"/>
 </p>
 We provide detailed dataset preprocessing steps as well as the training scripts. After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
 
