@@ -15,16 +15,40 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 ### 1. Protocols:
 - Protocol I: *Known Spoof Attack Detection*. We divide live subjects and subjects of each spoof pattern into train and test splits. We train the model on the training split and report the overall performance on the test split.
 
-- Protocol II: *Unknown Spoof Attack Detection*. We follow the leave-one-out paradigm — keep $13$ spoof attack and 80% live subjects as the train split, and use the remaining one spoof attacks and left 20% live subjects as the test split. We report the test split performance for both individual spoof attacks, as well as the averaged performance with standard deviation.
+- Protocol II: *Unknown Spoof Attack Detection*. We follow the leave-one-out paradigm — keep $13$ spoof attack and $80$% live subjects as the train split, and use the remaining one spoof attacks and left $20$% live subjects as the test split. We report the test split performance for both individual spoof attacks, as well as the averaged performance with standard deviation.
 
-- Protocol III: *Cross-domain Spoof Detection*. We partition the SiW-Mv2 into $5$ sub-datasets, where each sub-dataset represents different spoof type, different age and race, as well as different illuminations. We train the model on the source domain dataset, and evaluate the model on test splits of 5 different domains. Each sub-dataset performance, and averaged performance with standard deviation are reported
+- Protocol III: *Cross-domain Spoof Detection*. We partition the SiW-Mv2 into $5$ sub-datasets, where each sub-dataset represents different spoof type, different age and race, as well as different illuminations. We train the model on the source domain dataset, and evaluate the model on test splits of $5$ different domains. Each sub-dataset performance, and averaged performance with standard deviation are reported
 
 ### 2. Baseline Performance
+
+The quick view on the code structure:
+```bash
+./source_SiW_Mv2
+    ├── config_siwm.py 
+    ├── train.py
+    ├── test.py
+    ├── run.sh (call train.py and test.py)
+    ├── inference.py
+    ├── inference.sh (call inference.py for the custom data.)
+    ├── csv_parser.py   
+    ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
+    ├── pro_3_text (text file for the protocol III)
+    │      └── ...
+    ├── model.py (SRENet)
+    ├── preprocessing.py (data preprocessing file.)
+    ├── demo (the demo image and image dir for the quick usage)
+    │      └── ...
+    ├── parameters.py
+    ├── enviornment.yml
+    ├── metrics.py
+    ├── utils.py
+    └── warp.py
+```
 
 We implement SRENet as the baseline model, and evaluate this SRENet on three SiW-Mv2 protocols. Please find the details in [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).
 
 <p align="center">
-<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/baseline_performance.png" alt="drawing" width="1000"/>
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/baseline_performance.png" alt="drawing" width="600"/>
 </p>
 
 ## Reference
