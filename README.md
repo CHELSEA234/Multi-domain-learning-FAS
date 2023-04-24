@@ -1,4 +1,4 @@
-# Multi-domain Learning for Updating Face Anti-spoofing Models
+# SiW-Mv2 Dataset and Multi-domain FAS
 
 <p align="center">
 <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/dataset_gallery.png" alt="drawing" width="1000"/>
@@ -10,131 +10,44 @@ This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks *
 
 Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
 
-> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
-
-### 1. Setup the environment.
-
-- The quick view on the code structure:
+The quick view on the code structure:
 ```bash
-./source_SiW_Mv2
-    ├── config_siwm.py 
-    ├── train.py
-    ├── test.py
-    ├── run.sh (call train.py and test.py)
-    ├── inference.py
-    ├── inference.sh (call inference.py for the custom data.)
-    ├── csv_parser.py   
-    ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
-    ├── pro_3_text (text file for the protocol III)
-    │      └── ...
-    ├── model.py (SRENet)
-    ├── preprocessing.py (data preprocessing file.)
-    ├── demo (the demo image and image dir for the quick usage)
-    │      └── ...
-    ├── parameters.py
-    ├── enviornment.yml
-    ├── metrics.py
-    ├── utils.py
-    ├── warp.py
+./Multi-domain-learning-FAS
+    ├── source_SiW_Mv2 (baseline, training log, and pre-trained weights of SiW-Mv2 dataset)
+    ├── source_multi_domain (source code of the ECCV 2022)
     └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
 ```
 
-- To create your own environment by:
-  ```
-  conda env create -f environment.yml
-  ```
+## 1. SiW-Mv2 Introduction:
+> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
 
-### 2. Quick Usage
-- The pre-trained weights for $3$ different protocols and corresponding `.csv` result files can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
+## 2. SiW-Mv2 Protocols:
+- Protocol I: *Known Spoof Attack Detection*. We divide live subjects and subjects of each spoof pattern into train and test splits. We train the model on the training split and report the overall performance on the test split.
 
-- To reproduce the numerical results of the baseline, please run the following command. Result will output to the screen.
-```bash 
-bash csv_parser.sh
-Compute the protocol I scores.
-AP:  ['2.3', '2.3', '0.4', '2.3', '0.0', '7.3', '5.4', '0.0', '10.7', '0.0', ...
-...
-```
+- Protocol II: *Unknown Spoof Attack Detection*. We follow the leave-one-out paradigm — keep $13$ spoof attack and $80$% live subjects as the train split, and use the remaining one spoof attacks and left $20$% live subjects as the test split. We report the test split performance for both individual spoof attacks, as well as the averaged performance with standard deviation.
 
-- For inference on a single image or a directory of images, please run the following command. Of course, users can play around with their own images.
+- Protocol III: *Cross-domain Spoof Detection*. We partition the SiW-Mv2 into $5$ sub-datasets, where each sub-dataset represents novel spoof type, different age and ethnicity distribution, as well as new illuminations. We train the model on the source domain dataset, and evaluate the model on test splits of $5$ different domains. Each sub-dataset performance, and averaged performance with standard deviation are reported
 
-- Results will output to the screen and saved into the `.csv` file.
-```bash 
-bash inference.sh
-...
-- Results written to ./result/result.csv
-...
-./demo/1.png is classified as Spoof with the score 0.52
-```
+## 3. Baseline Performance
 
-### 3. Train and Testing
+We implement SRENet as the baseline model, and evaluate this SRENet on three SiW-Mv2 protocols. Please find the details in [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).
+
 <p align="center">
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
+<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/baseline_performance.png" alt="drawing" width="600"/>
 </p>
 
-- We provide detailed dataset preprocessing steps as well as the training scripts. 
-- After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
+## 4. Download
 
-#### 3.1. Data Preparation
-- Please first sign the [DRA form](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/DRA_form_SIWMv2.pdf) before donwloading the SiW-Mv2 dataset. 
-- To preprocess the videos for training and testing, you can adapt our `preprocessing.py` for your own data configuration, such as:
+1. SiW-Mv2 database is available under a license from Michigan State University for research purposes. Sign the Dataset Release Agreement [link](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/DRA_form_SIWMv2.pdf).
 
-```bash
-python preprocessing.py
-```
+2. Submit the request and your signed DRA to `guoxia11@msu.edu` with the following information:
+    - Title: SiW-Mv2 Application
+    - CC: Your advisor's email
+    - Content Line 1: Your name, email, affiliation
+    - Content Line 2: Your advisor's name, email, webpage
+    - Attachment: Signed DRA
 
-- After the preprocessing step completes, the program outputs extracted frames (`*.png`) and facial landmarks (`*.npy`) to `data` folder. Specifically,
-
-```bash
-./preprocessed_image_train
-    ├── Train
-    │     │── live
-    │     │     │── Live_0
-    │     │     │     │── 1.png
-    │     │     │     │── 1.npy
-    │     │     │     │── 2.png
-    │     │     │     │── 2.npy
-    │     │     │     └── ...
-    │     │     │── Live_1
-    │     │     │     │── 1.png
-    │     │     │     │── 1.npy
-    │     │     │     └── ...
-    │     │     ...
-    │     └── spoof
-    │           │── Spoof_0
-    │           │     │── 1.png
-    │           │     │── 1.npy
-    │           │     └── ...
-    │           │── Spoof_1
-    │           │     │── 1.png
-    │           │     │── 1.npy
-    │           │     └── ...
-    │           ...
-    └── Test (consistent with the training dataset configuration)
-          │── live
-          │     │── Live_0
-          │     │     └── ...
-          │     ...
-          └── spoof
-                │── Spoof_0
-                │     └── ...
-                ...
-```
-
-### 3.2. Train and Testing
-- After setting up the dataset path, you can run the training code as shown below:
-
-```
-    python train_architecture.py --pro=1 --cuda=0
-```
-- To run the testing code, which will save scores in csv file.
-```
-    python test_architecture.py --pro=1 --cuda=0
-```
-- To run the algorithm for all $3$ protocols, please run the following code.
-```
-    bash run.sh
-```
+3. You will receive the download instructions upon approval of your usage of the database.
 
 ## Reference
 If you would like to use our work, please cite:
