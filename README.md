@@ -13,7 +13,31 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 > Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
 
 ### 1. Setup the environment.
-- Please go to the folder `./source_SiW_Mv2`, and then you can see the enviornment `environment.yml`. 
+
+- The quick view on the code structure:
+```bash
+./source_SiW_Mv2
+    ├── config_siwm.py 
+    ├── train.py
+    ├── test.py
+    ├── run.sh (call train.py and test.py)
+    ├── inference.py
+    ├── inference.sh (call inference.py for the custom data.)
+    ├── csv_parser.py   
+    ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
+    ├── pro_3_text (text file for the protocol III)
+    │      └── ...
+    ├── model.py (SRENet)
+    ├── preprocessing.py (data preprocessing file.)
+    ├── demo (the demo image and image dir for the quick usage)
+    │      └── ...
+    ├── parameters.py
+    ├── enviornment.yml
+    ├── metrics.py
+    ├── utils.py
+    └── warp.py
+```
+
 - To create your own environment by:
   ```
   conda env create -f environment.yml
