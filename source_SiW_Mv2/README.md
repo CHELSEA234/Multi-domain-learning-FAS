@@ -21,30 +21,6 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 
 ### 2. Baseline Performance
 
-The quick view on the code structure:
-```bash
-./source_SiW_Mv2
-    ├── config_siwm.py 
-    ├── train.py
-    ├── test.py
-    ├── run.sh (call train.py and test.py)
-    ├── inference.py
-    ├── inference.sh (call inference.py for the custom data.)
-    ├── csv_parser.py   
-    ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
-    ├── pro_3_text (text file for the protocol III)
-    │      └── ...
-    ├── model.py (SRENet)
-    ├── preprocessing.py (data preprocessing file.)
-    ├── demo (the demo image and image dir for the quick usage)
-    │      └── ...
-    ├── parameters.py
-    ├── enviornment.yml
-    ├── metrics.py
-    ├── utils.py
-    └── warp.py
-```
-
 We implement SRENet as the baseline model, and evaluate this SRENet on three SiW-Mv2 protocols. Please find the details in [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).
 
 <p align="center">
