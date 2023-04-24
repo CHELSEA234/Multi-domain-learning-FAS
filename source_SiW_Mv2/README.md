@@ -1,16 +1,12 @@
 # SiW-Mv2 Dataset
 
 <p align="center">
-<img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/dataset_gallery.png" alt="drawing" width="1000"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
+    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
 </p>
 
-This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks **V**ersion 2 (SiW-Mv2) dataset. [[Arxiv]](https://arxiv.org/pdf/2208.11148.pdf) [[SiW-Mv2 Dataset]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf) 
-
-**Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**!
-
-Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
-
-> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
+- We provide detailed dataset preprocessing steps as well as the training scripts. 
+- After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
 
 ### 1. Setup the environment.
 
@@ -67,13 +63,6 @@ bash inference.sh
 ```
 
 ### 3. Train and Testing
-<p align="center">
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
-    <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
-</p>
-
-- We provide detailed dataset preprocessing steps as well as the training scripts. 
-- After following our instructions, user can generate tensorboard similar to the left figure above, and the intermediate results (right figure above) which has, from the top to down, original input image, pseudo reconstructed live images, spoof trace, ground truth and predicted depth maps. 
 
 #### 3.1. Data Preparation
 - Please first sign the [DRA form](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/DRA_form_SIWMv2.pdf) before donwloading the SiW-Mv2 dataset. 
@@ -123,10 +112,13 @@ python preprocessing.py
 
 #### 3.2. Train and Testing
 - After setting up the dataset path, you can run the training code as shown below:
-
 ```
     python train_architecture.py --pro=1 --cuda=0
 ```
+- Use `--pro=1` and `--unknown=Co` to decide which protocol and which unknown type is.
+- `--batch_size`, `--lr`, and `--decay_step` are training hyper-parameters.
+- `--cuda=0` specifies the GPU usage.
+
 - To run the testing code, which will save scores in csv file.
 ```
     python test_architecture.py --pro=1 --cuda=0
@@ -135,6 +127,7 @@ python preprocessing.py
 ```
     bash run.sh
 ```
+
 
 ## Reference
 If you would like to use our work, please cite:
