@@ -13,15 +13,7 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 > Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
 
 ### 1. Setup the environment.
-
-The main dependencies are:
-  ```
-    python 3.8.X
-    tensorflow-gpu 2.9.1
-    numpy 1.23.3
-    opencv-python 4.5.2.54
-  ```
-The enviornment setup file is `environment.yml`, please create your own environment by:
+Please go to the folder `./source_SiW_Mv2`, and then you can see the enviornment `environment.yml`. To create your own environment by:
   ```
   conda env create -f environment.yml
   ```
