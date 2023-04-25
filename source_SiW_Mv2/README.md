@@ -21,7 +21,7 @@
     ├── inference.sh (call inference.py for the custom data.)
     ├── csv_parser.py   
     ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
-    ├── pro_3_text (text file for the protocol III)
+    ├── pro_3_text (text file for the three protocol)
     │      └── ...
     ├── model.py (SRENet)
     ├── preprocessing.py (data preprocessing file.)
