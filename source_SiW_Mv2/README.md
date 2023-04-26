@@ -21,7 +21,13 @@
     ├── inference.sh (call inference.py for the custom data.)
     ├── csv_parser.py   
     ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
-    ├── pro_3_text (text file for the three protocol)
+    ├── pro_3_text (partition of the three protocol)
+    │      ├── trainlist_all.txt (protocol I spoof train)
+    │      ├── trainlist_live.txt (protocol I live train)
+    │      ├── testlist_all.txt (protocol I spoof test)
+    │      ├── testlist_live.txt (protocol I live test)
+    │      ├── train_A_pretrain.txt (protocol III source domain subject)
+    │      ├── train_B_spoof.txt (protocol III target domain B subject)
     │      └── ...
     ├── model.py (SRENet)
     ├── preprocessing.py (data preprocessing file.)
