@@ -13,7 +13,7 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 The quick view on the code structure:
 ```bash
 ./Multi-domain-learning-FAS
-    ├── source_SiW_Mv2 (baseline, training log, and pre-trained weights of SiW-Mv2 dataset)
+    ├── source_SiW_Mv2 (baseline code, partition files of 3 protocols, training log, and pre-trained weights of SiW-Mv2 dataset)
     ├── source_multi_domain (source code of the ECCV 2022)
     └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
 ```
@@ -31,12 +31,13 @@ The quick view on the code structure:
 ## 3. Baseline Performance
 
 - We implement SRENet as the baseline model, and evaluate this SRENet on three SiW-Mv2 protocols. Please find the details in [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).
+- To quick reproduce the following numerical numbers with `.csv` result files, please go to [Dataset Sec.2](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2#2-quick-usage).
 
 <p align="center">
 <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/baseline_performance.png" alt="drawing" width="600"/>
 </p>
 
-- In `./source_SiW_Mv2`, we provide detailed dataset preprocessing steps as well as the training scripts. Also, pre-trained weights for $3$ different protocols and corresponding `.csv` result files can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
+- In `./source_SiW_Mv2`, we provide detailed dataset preprocessing steps as well as the training scripts. Also, pre-trained weights for $3$ different protocols can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
 <p align="center">
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
