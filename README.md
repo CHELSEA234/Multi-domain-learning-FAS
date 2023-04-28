@@ -37,11 +37,22 @@ The quick view on the code structure:
 <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/baseline_performance.png" alt="drawing" width="600"/>
 </p>
 
-- In `./source_SiW_Mv2`, we provide detailed dataset preprocessing steps as well as the training scripts. Also, pre-trained weights for $3$ different protocols can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
+- In `./source_SiW_Mv2`, we provide detailed dataset preprocessing steps as well as the training scripts.
 <p align="center">
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/train_tb.png" alt="drawing" width="500"/>
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
 </p>
+
+- Also, pre-trained weights for $3$ different protocols can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
+
+| Protocol | Unknown    | Download | Protocol | Unknown | Download | Protocol | Unknown | Download |
+|:----:|:--------:|:----:|:----:|:--------:|:----:|:----:|:--------:|:----:|
+|I|N/A|[link](https://drive.google.com/drive/folders/1fSoF-Xy1DajQvIdnO8LQtEi-waXr6OaW?usp=sharing)|II|Partial Eyes|[link](https://drive.google.com/drive/folders/1AS6J0aYIUNEv6wkEf_XLWlhqncxIptfi?usp=sharing)|II|Transparent|[link](https://drive.google.com/drive/folders/1S-Pm-iAtYdr2EBgl6qhvOmHKdwcdVw3s?usp=sharing)|
+|II|Full Mask|[link](https://drive.google.com/drive/folders/1m2kvmlzOySLISlbuBe3izPazev-IO30J?usp=sharing)|II|Paper Mask|[link](https://drive.google.com/drive/folders/1ng5ax86y_Gvh_DYGJvScPW7bEzA7lY9e?usp=sharing)|II|Obfuscation|[link](https://drive.google.com/drive/folders/1PI_NdjzDsLelU8nyLRTrbYZrFA_X-k-p?usp=sharing)|
+|II|Cosmetic|[link](https://drive.google.com/drive/folders/1ck0uDRvTFSzYJUwkMYZyu0KSv046-G6k?usp=sharing)|II|Paper glass|[link](https://drive.google.com/drive/folders/1nOvApxLV5t1IUSxboK0w4RtymHj6sMQ8?usp=sharing)|II|Print|[link](https://drive.google.com/drive/folders/1OlWB0MKjXrrx5Q6UkWVWkygjPNbZ_4ol?usp=sharing)|
+|II|Impersonate|[link](https://drive.google.com/drive/folders/1Lt-_h3vqfVJ2f_vtOzr2oOKTVnyve2oz?usp=sharing)|II|Silicone|[link](https://drive.google.com/drive/folders/1bplxEU4G_qs5P9Udy3G3c12FmJC_6kkE?usp=share_link)|II|Replay|[link](https://drive.google.com/drive/folders/1Kkp5awJMvteEGe-9772ms3s3qxH_jj4N?usp=sharing)|
+|II|FunnyEyes|[link](https://drive.google.com/drive/folders/1Fs4GxiUr3zMJhoUYb8jX-Raf1WST-o90?usp=sharing)|II|Partial Mouth|[link](https://drive.google.com/drive/folders/1Z-LcrLNv5g7NrgzuF4ba2g80mEpa14p0?usp=share_link)|II|Mannequin|[link](https://drive.google.com/drive/folders/1Lv3byEmeWtgJi23A5_6SC2mkhhLs8VHe?usp=sharing)|
+|III|Cross Domain|[link](https://drive.google.com/drive/folders/1Nv2BePpjQgo2YD_CqxQ1Sv99UJn7esPB?usp=sharing)|
 
 ## 4. Download
 
