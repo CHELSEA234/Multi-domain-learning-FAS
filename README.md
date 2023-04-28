@@ -19,9 +19,12 @@ The quick view on the code structure:
 ```
 
 ## 1. SiW-Mv2 Introduction:
-> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing dataset that includes $14$ spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. In addition, **ALL** live subjects in SiW-Mv2 dataset participate in person during the dataset collection, and they have signed the consent form which ensures the dataset usage for the research purpose. The more details are can be found in [dataset](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2).  
+> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing (FAS) dataset that is first introduced in the multi-domain FAS updating algorithm. The SiW-Mv2 dataset includes 14 spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. Also, SiW-Mv2 dataset is a *privacy-aware* dataset, in which ALL live subjects in SiW-Mv2 dataset have signed the consent form which ensures the dataset usage for the research purpose.  The more details are can be found in [page](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2) and [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf) 
+.  
 
 ## 2. SiW-Mv2 Protocols:
+To set a baseline for future study on SiW-Mv2, we define three protocols. Note the partition file for each protocol is fixed, which can be found in `./source_SiW_Mv2/pro_3_text/`.
+
 - Protocol I: *Known Spoof Attack Detection*. We divide live subjects and subjects of each spoof pattern into train and test splits. We train the model on the training split and report the overall performance on the test split.
 
 - Protocol II: *Unknown Spoof Attack Detection*. We follow the leave-one-out paradigm — keep $13$ spoof attack and $80$% live subjects as the train split, and use the remaining one spoof attacks and left $20$% live subjects as the test split. We report the test split performance for both individual spoof attacks, as well as the averaged performance with standard deviation.
