@@ -43,6 +43,8 @@ The quick view on the code structure:
     <img src="https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/figures/intermediate_result.png" alt="drawing" width="300"/>
 </p>
 
+## 4. Baseline Pre-trained Weights
+
 - Also, pre-trained weights for $3$ different protocols can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
 
 | Protocol | Unknown    | Download | Protocol | Unknown | Download | Protocol | Unknown | Download |
@@ -54,7 +56,7 @@ The quick view on the code structure:
 |II|FunnyEyes|[link](https://drive.google.com/drive/folders/1Fs4GxiUr3zMJhoUYb8jX-Raf1WST-o90?usp=sharing)|II|Partial Mouth|[link](https://drive.google.com/drive/folders/1Z-LcrLNv5g7NrgzuF4ba2g80mEpa14p0?usp=share_link)|II|Mannequin|[link](https://drive.google.com/drive/folders/1Lv3byEmeWtgJi23A5_6SC2mkhhLs8VHe?usp=sharing)|
 |III|Cross Domain|[link](https://drive.google.com/drive/folders/1Nv2BePpjQgo2YD_CqxQ1Sv99UJn7esPB?usp=sharing)|
 
-## 4. Download
+## 5. Download
 
 1. SiW-Mv2 database is available under a license from Michigan State University for research purposes. Sign the Dataset Release Agreement [link](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/DRA_form_SIWMv2.pdf).
 
