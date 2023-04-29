@@ -10,6 +10,8 @@ This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks *
 
 Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
 
+<img src="source_SiW_Mv2/figures/demo_1.gif" width="250" height="250"/>
+
 The quick view on the code structure:
 ```bash
 ./Multi-domain-learning-FAS
