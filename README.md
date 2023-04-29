@@ -14,6 +14,10 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
   <img src="source_SiW_Mv2/figures/demo_1.gif" width="300" height="200"/>
   <img src="source_SiW_Mv2/figures/demo_2.gif" width="300" height="200"/>
 </p>
+<p float="left">
+  <img src="source_SiW_Mv2/figures/demo_3.gif" width="300" height="200"/>
+  <img src="source_SiW_Mv2/figures/demo_4.gif" width="300" height="200"/>
+</p>
 
 The quick view on the code structure:
 ```bash
