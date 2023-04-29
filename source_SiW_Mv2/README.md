@@ -48,7 +48,6 @@
 
 ### 2. Quick Usage
 - The pre-trained weights for $3$ different protocols and corresponding `.csv` result files can be found in this [page](https://drive.google.com/drive/folders/106TrDEeH-OOfPP4cWketphMJGXtE9sgW?usp=sharing).
-
 - To reproduce the numerical results of the baseline, please run the following command. Result will output to the screen.
 ```bash 
 bash csv_parser.sh
@@ -72,6 +71,28 @@ bash inference.sh
 
 #### 3.1. Data Preparation
 - Please first sign the [DRA form](https://github.com/CHELSEA234/Multi-domain-learning-FAS/blob/main/source_SiW_Mv2/DRA_form_SIWMv2.pdf) before donwloading the SiW-Mv2 dataset. 
+- After unzip the dataset files, you can obtain the following structure:
+```bash
+./SiW-Mv2
+    ├── Spoof (contain 14 folders, each of which has raw videos).
+    │     ├── Makeup_Cosmetic
+    │     ├── Makeup_Impersonation
+    │     ├── Makeup_Obfuscation
+    │     ├── Mannequin
+    │     ├── Silicone
+    │     ├── Print
+    │     ├── Replay
+    │     ├── Partial_FunnyeyeGlasses
+    │     ├── Partial_PaperGlasses
+    │     ├── Partial_Eye
+    │     ├── Partial_Mouth
+    │     ├── Mask_HalfMask
+    │     ├── Mask_PaperMask
+    │     └── Mask_TransparentMask
+    ├── Live (contain 785 raw video files)
+    └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
+```
+
 - To preprocess the videos for training and testing, you can adapt our `preprocessing.py` for your own data configuration, such as:
 
 ```bash
