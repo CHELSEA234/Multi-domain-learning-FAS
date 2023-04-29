@@ -24,7 +24,7 @@
     ├── pro_3_text (partition of the three protocol)
     │      ├── trainlist_all.txt (spoof train subjects in protocol I)
     │      ├── trainlist_live.txt (live train subjects in protocol I and II)
-    │      ├── testlist_all.txt (spoof train subjects in protocol I)
+    │      ├── testlist_all.txt (spoof test subjects in protocol I)
     │      ├── testlist_live.txt (live test subjects in protocol I and II)
     │      ├── train_A_pretrain.txt (protocol III source domain subject)
     │      ├── train_B_spoof.txt (protocol III target domain B subject)
