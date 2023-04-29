@@ -22,10 +22,10 @@
     ├── csv_parser.py   
     ├── csv_parser.sh (call csv_parser.py to reproduce the numerical baseline result.)
     ├── pro_3_text (partition of the three protocol)
-    │      ├── trainlist_all.txt (protocol I spoof train)
-    │      ├── trainlist_live.txt (protocol I live train)
-    │      ├── testlist_all.txt (protocol I spoof test)
-    │      ├── testlist_live.txt (protocol I live test)
+    │      ├── trainlist_all.txt (spoof train subjects in protocol I)
+    │      ├── trainlist_live.txt (live train subjects in protocol I and II)
+    │      ├── testlist_all.txt (spoof train subjects in protocol I)
+    │      ├── testlist_live.txt (live test subjects in protocol I and II)
     │      ├── train_A_pretrain.txt (protocol III source domain subject)
     │      ├── train_B_spoof.txt (protocol III target domain B subject)
     │      └── ...
