@@ -124,8 +124,8 @@ class Config(object):
 		line_count  = 0
 		for row in csv_reader:
 			if line_count != 0 and "siwm" not in row[0]:
-					sub_id, label = row[0].split('/')[-2], row[1]
-					self.illu_dict[sub_id] = label
+				sub_id, label = row[0].split('/')[-2], row[1]
+				self.illu_dict[sub_id] = label
 			line_count += 1
 		csv_file.close()
 
