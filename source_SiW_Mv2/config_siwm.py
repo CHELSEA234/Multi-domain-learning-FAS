@@ -98,6 +98,15 @@ class Config(object):
 class Config_siwm(Config):
 	"""
 	the configuration class for siw-mv2 dataset.
+	protocol I: 
+		the live subjects for training and testing are from trainlist_live.txt and testlist_live.txt, respectively.
+		the spoof subjects for training and testing are from testlist_live.txt and testlist_all.txt, respectively.
+	protocol II:
+		the live subjects for training and testing are from trainlist_live.txt and testlist_live.txt, respectively.
+		13 spoof attacks in the training and 1 spoof attack for the testing.
+	protocol III:
+		both live and spoof subjects are in train_A_pretrain.txt.
+		the test subjects are in the test_A_pretrain.txt, test_B_spoof.txt, test_C_race.txt, test_D_age.txt and test_E_ill.txt.
 	"""
 	LI_DATA_DIR = []
 	SP_DATA_DIR = []
@@ -181,34 +190,6 @@ class Config_custom(Config):
 		# self.partition_folder = args.partition
 		self.SP_DATA = glob(self.root_dir + '/spoof/*')
 		self.LI_DATA = glob(self.root_dir + '/live/*')
-
-		# def read_txt_file(file_name):
-		# 	sub_list = []
-		# 	txt_file = os.path.join(self.partition_folder, file_name)
-		# 	f = open(txt_file, 'r')
-		# 	lines = f.readlines()
-		# 	category = 'live' if 'live' in file_name else 'spoof'
-		# 	for _ in lines:
-		# 		if _ != "":
-		# 			_ = _.strip()
-		# 			sub_list.append(os.path.join(self.root_dir, category, _))
-		# 	return sub_list
-
-		# self.LI_DATA_DIR = read_txt_file('train_target_live.txt')
-		# self.SP_DATA_DIR = read_txt_file('train_target_spoof.txt')
-		# self.LI_DATA_DIR_TEST = read_txt_file('test_source_live.txt')
-		# self.SP_DATA_DIR_TEST = read_txt_file('test_source_spoof.txt')
-		# self.LI_DATA_DIR_TEST_B = read_txt_file('test_target_live.txt')
-		# self.SP_DATA_DIR_TEST_B = read_txt_file('test_target_spoof.txt')
-
-  #       # This is a misuse of assertions. These should be tests and exceptions as
-  #       # assertions can be disabled at runtime.  Sigh.
-		# assert len(self.LI_DATA_DIR) != 0
-		# assert len(self.SP_DATA_DIR) != 0
-		# assert len(self.LI_DATA_DIR_TEST) != 0
-		# assert len(self.SP_DATA_DIR_TEST) != 0
-		# assert len(self.LI_DATA_DIR_TEST_B) != 0
-		# assert len(self.SP_DATA_DIR_TEST_B) != 0
 
 		self.inference_data_dir = args.dir
 		self.inference_data_img = args.img

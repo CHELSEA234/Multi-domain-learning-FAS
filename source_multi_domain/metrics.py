@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2022
 # 
-# Authors: Xiao Guo, Yaojie Liu, Anil Jain, and Xiaoming Liu.
+# Multi-domain Learning for Updating Face Anti-spoofing Models (ECCV 2022)
+# Xiao Guo, Yaojie Liu, Anil Jain, and Xiaoming Liu
 # 
 # All Rights Reserved.s
 # 
@@ -18,11 +19,11 @@ from sklearn import metrics
 import numpy as np
 
 def get_tpr_at_fpr(tpr_lst, fpr_lst, score_lst, fpr_value):
-	"""
-	returns true postive rate and threshold given false positive rate value.
-	"""
+	"""returns true postive rate and threshold given false positive rate value."""
 	abs_fpr = np.absolute(fpr_lst - fpr_value)
-	idx = np.argmin(abs_fpr)
+	idx_min = np.argmin(abs_fpr)
+	fpr_value_target = fpr_lst[idx_min]
+	idx = np.max(np.where(fpr_lst == fpr_value_target))
 	return tpr_lst[idx], score_lst[idx]
 
 def my_metrics(label_list, pred_list, val_phase=False):
@@ -46,6 +47,7 @@ def my_metrics(label_list, pred_list, val_phase=False):
 		_tnr, _fnr = tnr[idx_], fnr[idx_]
 		assert _tpr + _fnr == 1, print(_tpr, _fnr)
 		assert _tnr + _fpr == 1, print(_tnr, _fpr)
+		# https://chalearnlap.cvc.uab.cat/challenge/33/track/33/metrics/
 		APCER = _fpr/(_fpr+_tnr)
 		BPCER = _fnr/(_fnr+_tpr)
 		ACER  = 0.5 * (APCER+BPCER)
@@ -60,10 +62,9 @@ def my_metrics(label_list, pred_list, val_phase=False):
 	idx = np.argmin(abs_fnr)
 	res_tpr = tpr[idx]
 	if not val_phase:
-		tpr_h, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.002)	# 0.2%
-		tpr_m, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.05)	# 5%
-		tpr_l, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.01)	# 1%
+		tpr_h, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.005)
+		tpr_m, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.01)	
+		tpr_l, _ = get_tpr_at_fpr(tpr, fpr, scores, 0.02)	
 		return best_AP, best_BP, best_ACER, EER, res_tpr, auc_score, [tpr_h, tpr_m, tpr_l]
 	else:
 		return best_AP, best_BP, best_ACER, EER, res_tpr, auc_score
-		
