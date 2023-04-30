@@ -6,9 +6,9 @@
 
 This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks **V**ersion 2 (SiW-Mv2) dataset and the official implementation of our ECCV2022 oral paper "Multi-domain Learning for Updating Face Anti-spoofing Models". [[Arxiv]](https://arxiv.org/pdf/2208.11148.pdf) [[SiW-Mv2 Dataset]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf) 
 
-**Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**!
-
 Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
+
+**Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**! Check out our quick demo:
 
 <p float="left">
   <img src="source_SiW_Mv2/figures/demo_1.gif" width="300" height="200"/>
