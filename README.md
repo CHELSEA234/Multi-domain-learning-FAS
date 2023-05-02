@@ -34,7 +34,7 @@ Note that the spoof detection baseline is introduced in the supplementary sectio
 > Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing (FAS) dataset that is first introduced in the multi-domain FAS updating algorithm. The SiW-Mv2 dataset includes 14 spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. Also, SiW-Mv2 dataset is a *privacy-aware* dataset, in which ALL live subjects in SiW-Mv2 dataset have signed the consent form which ensures the dataset usage for the research purpose.  The more details are can be found in [page](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2) and [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).  
 
 ## 2. SiW-Mv2 Protocols:
-To set a baseline for future study on SiW-Mv2, we define three protocols. Note the partition file for each protocol is fixed, which can be found in `./source_SiW_Mv2/pro_3_text/`.
+To set a baseline for future study on SiW-Mv2, we define three protocols. Note the partition file for each protocol is fixed, which can be found in `./source_SiW_Mv2/pro_3_text/` of [Dataset Sec.1](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2#1-setup-the-environment).
 
 - Protocol I: *Known Spoof Attack Detection*. We divide live subjects and subjects of each spoof pattern into train and test splits. We train the model on the training split and report the overall performance on the test split.
 
