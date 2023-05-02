@@ -22,7 +22,7 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 The quick view on the code structure:
 ```bash
 ./Multi-domain-learning-FAS
-    ├── source_SiW_Mv2 (baseline code, partition files of 3 protocols, training log, and pre-trained weights of SiW-Mv2 dataset)
+    ├── source_SiW_Mv2 (baseline code (ECCV 2022 supplementary), partition files of 3 protocols, training log, and pre-trained weights of SiW-Mv2 dataset)
     ├── source_multi_domain (source code of the ECCV 2022)
     └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
 ```
