@@ -8,7 +8,9 @@ This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks *
 
 Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
 
-**Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**! Check out our quick demo:
+👏 **Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**! 
+
+🔥🔥**Check out our quick demo:**
 
 <p float="left">
   <img src="source_SiW_Mv2/figures/demo_1.gif" width="300" height="200"/>
@@ -19,17 +21,17 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
   <img src="source_SiW_Mv2/figures/demo_4.gif" width="300" height="200"/>
 </p>
 
-The quick view on the code structure:
+The quick view on the code structure. 
 ```bash
 ./Multi-domain-learning-FAS
-    ├── source_SiW_Mv2 (baseline code (ECCV 2022 supplementary), partition files of 3 protocols, training log, and pre-trained weights.)
-    ├── source_multi_domain (source code of the ECCV 2022)
+    ├── source_SiW_Mv2 (The spoof detection baseline source code, pre-trained weights and protocol partition files,.)
+    ├── source_multi_domain (The multi-domain updating source code)
     └── DRA_form_SIWMv2.pdf (Dataset Release Agreement)
 ```
+Note that the spoof detection baseline is introduced in the supplementary section of [[Arxiv](https://arxiv.org/pdf/2208.11148.pdf).]
 
 ## 1. SiW-Mv2 Introduction:
-> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing (FAS) dataset that is first introduced in the multi-domain FAS updating algorithm. The SiW-Mv2 dataset includes 14 spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. Also, SiW-Mv2 dataset is a *privacy-aware* dataset, in which ALL live subjects in SiW-Mv2 dataset have signed the consent form which ensures the dataset usage for the research purpose.  The more details are can be found in [page](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2) and [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf) 
-.  
+> Introduction: **SiW-Mv2 Dataset** is a large-scale face anti-spoofing (FAS) dataset that is first introduced in the multi-domain FAS updating algorithm. The SiW-Mv2 dataset includes 14 spoof attack types, and these spoof attack types are designated and verified by the IARPA ODIN program. Also, SiW-Mv2 dataset is a *privacy-aware* dataset, in which ALL live subjects in SiW-Mv2 dataset have signed the consent form which ensures the dataset usage for the research purpose.  The more details are can be found in [page](https://github.com/CHELSEA234/Multi-domain-learning-FAS/tree/main/source_SiW_Mv2) and [[paper]](http://cvlab.cse.msu.edu/pdfs/guo_liu_jain_liu_eccv2022_supp.pdf).  
 
 ## 2. SiW-Mv2 Protocols:
 To set a baseline for future study on SiW-Mv2, we define three protocols. Note the partition file for each protocol is fixed, which can be found in `./source_SiW_Mv2/pro_3_text/`.
