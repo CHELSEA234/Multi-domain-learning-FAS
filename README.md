@@ -8,6 +8,27 @@ This project page contains **S**poof **i**n **W**ild with **M**ultiple Attacks *
 
 Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en), [Yaojie Liu](https://yaojieliu.github.io/), [Anil Jain](https://www.cse.msu.edu/~jain/), [Xiaoming Liu](http://cvlab.cse.msu.edu/)
 
+## An Important Note:
+
+To SiW-Mv2 Users:
+
+  Although SiW-Mv2 is thoroughly described in this ECCV work, the reference for SiW-Mv2 in our publication was mistakenly listed as the work that originally introduced SiW. If you use the SiW-Mv2 dataset, **please consider citing us. We greatly appreciate your acknowledgment and understanding**.
+
+  ```Bibtex
+  @inproceedings{xiaoguo2022MDFAS,
+      title={Multi-domain Learning for Updating Face Anti-spoofing Models},
+      author={Guo, Xiao and Liu, Yaojie and Jain, Anil and Liu, Xiaoming},
+      booktitle={ECCV},
+      year={2022}
+  }
+  ```
+
+Best regards,
+
+The SiW-Mv2 Management Team
+
+## Updates:
+
 👏 **Our algorithm has been officially accepted and delivered to the [IAPRA ODIN](https://www.iarpa.gov/research-programs/odin) program**! 
 
 🔥🔥**Check out our quick demo:**
@@ -82,15 +103,3 @@ To set a baseline for future study on SiW-Mv2, we define three protocols. Note t
     - Attachment: Signed DRA
 
 3. You will receive the download instructions upon approval of your usage of the database.
-
-## Reference
-If you would like to use our work, please cite:
-```Bibtex
-@inproceedings{xiaoguo2022MDFAS,
-    title={Multi-domain Learning for Updating Face Anti-spoofing Models},
-    author={Guo, Xiao and Liu, Yaojie and Jain, Anil and Liu, Xiaoming},
-    booktitle={ECCV},
-    year={2022}
-}
-```
-This github will continue to update in the near future. If you have any question, please contact: [Xiao Guo](guoxia11@msu.edu) 
