@@ -10,7 +10,7 @@ Authors: [Xiao Guo](https://scholar.google.com/citations?user=Gkc-lAEAAAAJ&hl=en
 
 ## An Important Note:
 
-To SiW-Mv2 Users:
+Dear SiW-Mv2 Users:
 
   Although SiW-Mv2 is thoroughly described in this ECCV work, the reference for SiW-Mv2 in our publication was mistakenly listed as the work that originally introduced SiW. If you use the SiW-Mv2 dataset, **please consider citing us. We greatly appreciate your acknowledgment and understanding**.
 
