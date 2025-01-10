@@ -180,7 +180,7 @@ class SRENet(object):
         self.config.BATCH_SIZE = 5
         dataset_inference = Dataset(self.config, test_mode)
         img_num = len(dataset_inference.name_list)
-        num_list = int(img_num/self.config.BATCH_SIZE)+1
+        num_list = int(img_num/self.config.BATCH_SIZE)+img_num%self.config.BATCH_SIZE
         final_score = None
         decision = None
         for step in tqdm(range(num_list)):

@@ -1,0 +1,26 @@
+Image name,Score,Decision
+./demo/spoof/1.png,0.52,Spoof
+./demo/spoof/10.png,0.42,Spoof
+./demo/spoof/11.png,0.64,Spoof
+./demo/spoof/12.png,0.12,Live
+./demo/spoof/13.png,0.13,Live
+./demo/spoof/14.png,0.13,Live
+./demo/spoof/15.png,0.65,Spoof
+./demo/spoof/16.png,0.65,Spoof
+./demo/spoof/17.png,0.66,Spoof
+./demo/spoof/18.png,0.64,Spoof
+./demo/spoof/19.png,0.69,Spoof
+./demo/spoof/2.png,0.54,Spoof
+./demo/spoof/20.png,0.71,Spoof
+./demo/spoof/21.png,0.77,Spoof
+./demo/spoof/22.png,0.68,Spoof
+./demo/spoof/23.png,0.67,Spoof
+./demo/spoof/24.png,0.72,Spoof
+./demo/spoof/25.png,0.70,Spoof
+./demo/spoof/3.png,0.60,Spoof
+./demo/spoof/4.png,0.59,Spoof
+./demo/spoof/5.png,0.54,Spoof
+./demo/spoof/6.png,0.57,Spoof
+./demo/spoof/7.png,0.62,Spoof
+./demo/spoof/8.png,0.73,Spoof
+./demo/spoof/9.png,0.49,Spoof
