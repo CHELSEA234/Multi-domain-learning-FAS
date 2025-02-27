@@ -2,7 +2,7 @@
 
 Dear SiW-Mv2 Users:
 
-  Although SiW-Mv2 is thoroughly described in this ECCV work, the reference for SiW-Mv2 in our publication was mistakenly listed as the work that originally introduced SiW. If you use the SiW-Mv2 dataset, **please consider citing us. We greatly appreciate your acknowledgment and understanding**.
+  Although SiW-Mv2 is thoroughly described in this ECCV work, the reference for SiW-Mv2 in our publication was mistakenly listed as the work that initially introduced SiW-M. If you use the SiW-Mv2 dataset, **please consider citing us. We greatly appreciate your acknowledgment and understanding**.
 
   ```Bibtex
   @inproceedings{xiaoguo2022MDFAS,
